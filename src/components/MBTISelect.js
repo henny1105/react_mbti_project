@@ -1,3 +1,5 @@
+import styles from './MBTISelect.module.css';
+
 const optionGroups = [
 	[
 		{ value: 'E', label: '외향형' },
@@ -18,19 +20,19 @@ const optionGroups = [
 ];
 
 function MBTIOption({ selected, label, value, onClick }) {
-	const style = { fontWeight: selected ? 'bold' : 'normal' };
+	const classNames = `${styles.mbtiOption} ${selected ? styles.selected : ''}`;
 
 	return (
-		<span style={style} onClick={onClick}>
+		<div className={classNames} onClick={onClick}>
+			<span className={styles.char}>{value}</span>
 			{label}
-			{value}
-		</span>
+		</div>
 	);
 }
 
 function MBTIOptionGroup({ options, value, onChange }) {
 	return (
-		<div>
+		<div className={styles.mbtiOptionGroup}>
 			{options.map((option) => (
 				<MBTIOption key={option.value} selected={option.value === value} label={option.label} value={option.value} onClick={() => onChange(option.value)} />
 			))}
